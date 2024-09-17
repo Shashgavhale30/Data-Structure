@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int choice,n,x,F,R,Queue[10];
+    F=R=-1;
+    printf("Enter the size of the Queue= ");
+    scanf("%d",&n);
+    while(1)
+    {
+        printf("\n1.Enqueue\n2.Dequeue\n3.Peek\n4.Underflow\n5.Overflow\n6.Display\n7.Exit");
+        printf("\nEnter the choice= ");
+        scanf("%d",&choice);
+        
+        switch(choice)
+        {
+            case 1:
+            //Enqueue
+            if(F==(R+1)%n)
+            {
+                printf("Overflow!!");
+            }
+            else if (F==-1&&R==-1)
+            {
+                printf("Ënter the element for insertion= ");
+                scanf("%d",&x);
+                F=R=0;
+                Queue[F]=x;
+            }
+            else
+            {
+                printf("Ënter the element for insertion= ");
+                scanf("%d",&x);
+                R=R+1%n;
+                Queue[R]=x;
+            }
+            break;
+            
+            case 2:
+            //dequeue
+            if(F==-1&&R==-1)
+            {
+                printf("Underflow!!");
+            }
+            else if(F==R)
+            {
+                printf("The deleted element is %d",Queue[F]);
+                F=R=-1;
+            }
+            else
+            {
+                printf("The deleted element is %d",Queue[F]);
+                F=F+1%n;
+            }
+            break;
+            
+            case 3:
+            //peek
+            if(F==-1 && R==-1)
+            {
+                printf("Underflow!!");
+            }
+            else
+            {
+                printf("The first element is %d",Queue[F]);
+            }
+            break;
+            
+            case 4:
+            // Underflow
+            if(F==-1 && R==-1)
+            {
+                printf("Queue is empty : Underflow");
+            }
+            else
+            {
+                printf("Queue is not empty");
+            }
+            break;
+            
+            case 5:
+            // Overflow
+            if(R==n-1)
+            {
+                printf("Overflow");
+            }
+            else
+            {
+                printf("Queue is not overflow");
+            }
+            break;
+            
+            case 6:
+            // Display
+               if(F==-1&&R==-1)
+               {
+                   printf("Underflow!!");
+               } 
+               else
+               {
+                   for(int i=F;i<=R;i=i+1%n)
+                   {
+                       printf("\t%d",Queue[i]);
+                   }
+               }
+            break;
+            
+            case 7:
+            // Exit
+            exit(0);
+            default:printf("\n Invalid choice !");
+            break;
+        }
+    }
+    return 0;
+}
